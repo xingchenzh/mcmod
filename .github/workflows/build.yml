@@ -1,3 +1,4 @@
+@@ -1,18 +1,28 @@
 name: Build Forge Mod
 
 on: [push]
