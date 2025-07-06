@@ -1,24 +1,18 @@
 name: Build Forge Mod
-
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-          
-      - name: Build with Gradle
-        run: ./gradlew build
-        
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - run: chmod +x gradlew
+      - run: ./gradlew build --no-daemon --max-workers=2
+      - uses: actions/upload-artifact@v3
         with:
           name: AutoAim-Mod
-          path: build/*.jar
+          path: build/libs/*.jar
